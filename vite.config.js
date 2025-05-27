@@ -9,11 +9,5 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
-  },
-  // Use BASE_URL environment variable or default to '/'
-  base: process.env.BASE_URL || '/',
-  define: {
-    // Make BASE_URL available to the client code
-    'import.meta.env.BASE_URL': JSON.stringify(process.env.BASE_URL || '/'),
   }
 })
