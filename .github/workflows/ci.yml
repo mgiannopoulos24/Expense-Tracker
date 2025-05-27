@@ -1,5 +1,5 @@
 name: Deploy to GitHub Pages
-## This workflow builds the project and deploys it to GitHub Pages
+
 on:
   push:
     branches:
@@ -29,8 +29,14 @@ jobs:
         env:
           BASE_URL: '/Expense-Tracker/'
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: dist # The folder the action should deploy
-          branch: gh-pages # The branch the action should deploy to
+          path: 'dist'
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
