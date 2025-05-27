@@ -10,6 +10,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  // Add base config for GitHub Pages
+  // Use BASE_URL environment variable or default to '/'
   base: process.env.BASE_URL || '/',
+  define: {
+    // Make BASE_URL available to the client code
+    'import.meta.env.BASE_URL': JSON.stringify(process.env.BASE_URL || '/'),
+  }
 })
