@@ -5,12 +5,18 @@ on:
     branches:
       - main
 
+# Updated permissions block
 permissions:
   contents: write
+  pages: write      # Required for pages deployment
+  id-token: write   # Required for token authentication
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
